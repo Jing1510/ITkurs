@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tilordningsoperatorer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 32px;
+        background: #f0f4f8;
+        text-align: center;
+      }
+      h1 {
+        font-size: 80px;
+        color: #005f99;
+        margin: 0;
+      }
+      button {
+        font-size: 20px;
+        padding: 12px 28px;
+        margin: 8px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background-color:lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="teller">0</h1>
+
+    <!-- OPPGAVE 1 av 2: Tilordningsoperatorer -->
+
+    <!-- Lag tre knapper:
+         "+5"       → øker telleren med 5
+         "-3"       → minker telleren med 3
+         "Doble"    → ganger telleren med 2
+         "Nullstill" → setter telleren til 0 -->
+    <button onclick="okMed5()">+5</button>
+    <button onclick="minkMed3()">-3</button>
+    <button onclick="doble()">Doble</button>
+    <button onclick="nullstill()">Nullstill</button>
+
+    <script>
+      // Model
+      let antall = 0;
+
+      // Lag en funksjon oppdater() som viser antall i #teller
+      
+      // View
+      function oppdater(num) {
+        document.getElementById("teller").innerHTML = num;
+      }
+
+      // Lag fire funksjoner: okMed5(), minkMed3(), doble(), nullstill()
+      // Bruk tilordningsoperatorer: +=  -=  *=
+      // Alle funksjonene skal kalle oppdater() til slutt
+
+      // Controller
+      function okMed5() {
+        antall += 5;
+        oppdater(antall);
+      }
+      function minkMed3() {
+        antall -= 3;
+        oppdater(antall);
+      }
+      function doble() {
+        antall *= 2;
+        oppdater(antall);
+      }
+      function nullstill() {
+        antall = 0;
+        oppdater(antall);
+      }
+    </script>
+  </body>
+</html>

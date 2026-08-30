@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Om meg - med layout</title>
+    <style>
+
+        /* OPPGAVE 3 av 3: Layout med Flexbox */
+
+        body {
+            /* Legg til font og bakgrunnsfarge */
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: #D9EEE1;
+        }
+
+        /* Lag en klasse som heter .rad og gjør at elementene inni
+           vises ved siden av hverandre med Flexbox */
+        .rad {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 20px;
+        }
+
+        /* Lag en klasse som heter .kort og gi den:
+           - hvit bakgrunn
+           - litt padding
+           - runde hjørner (border-radius) */
+        .kort {
+            background-color: white;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 20px;
+            width: 200px;
+            text-align: center;
+            flex: 1;
+        }
+
+    .title {
+        text-align: center;
+    }
+
+    </style>
+</head>
+<body>
+
+    <h1 class="title">Om meg</h1>
+
+    <!-- Legg tre .kort inni en .rad slik at de vises ved siden av hverandre -->
+    <!-- Kort 1: Hvem er jeg? -->
+    <!-- Kort 2: Mine hobbyer (som en liste) -->
+    <!-- Kort 3: Mine favoritter (bok, film, musikk — velg selv) -->
+
+    <div class="rad">
+        <div class="kort">
+            <h2>Hvem er jeg?</h2>
+            <p>Jeg heter Jing, og jeg kommer fra Kina.</p>
+        </div>
+
+        <div class="kort">
+            <h2>Mine hobbyer:</h2>
+            <ul>
+                <li>Å gå på tur</li>
+                <li>Å lage mat</li>
+                <li>Å se på film</li>
+            </ul>
+        </div>
+
+        <div class="kort">
+            <h2>Min favorittbok:</h2>
+            <p>Den lille prinsen</p>
+        </div>
+    </div>
+
+</body>
+</html>

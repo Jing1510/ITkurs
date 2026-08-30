@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kortgenerator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 32px;
+        background: #f0f4f8;
+        text-align: center;
+      }
+
+      /* Lag CSS for .kort slik at hvert kort:
+           - har hvit bakgrunn
+           - har runde hjørner
+           - har litt padding
+           - har litt margin-bottom
+           - ser presentabelt ut */
+      .kort {
+         background: white;
+         border-radius: 20px;
+         padding: 10px 10px;
+         margin-bottom: 10px;
+      }
+
+      /* Valgfritt: style overskriften og teksten inni kortene */
+      .kort h2 {
+         border-radius: 20px;
+         padding: 10px 10px;
+         margin: auto;
+         width: 600px; 
+
+      }
+      .kort p {
+         padding: 10px 10px;
+         margin-bottom: 10px;
+         font-size: 25px;
+      }
+
+      #output {
+        margin-top: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Teknologier jeg har lært</h1>
+    <div id="output"></div>
+
+    <script>
+      // OPPGAVE: Kortgenerator med funksjoner og parametre
+
+      // STEG 1:
+      // Lag en funksjon som heter lagKort(tittel, tekst)
+      // Funksjonen skal bruke document.getElementById("output").innerHTML
+      // til å vise et kort med tittelen og teksten
+      // Kortet skal ha class="kort"
+
+      // STEG 2:
+      // Kall lagKort() tre ganger med ulike titler og tekster:
+      // - "HTML" og en beskrivelse
+      // - "CSS" og en beskrivelse
+      // - "JavaScript" og en beskrivelse
+      // Problemet: hvert kall overskriver det forrige. Hvorfor?
+
+      // STEG 3:
+      // Endre funksjonen slik at den LEGGER TIL et kort
+      // i stedet for å erstatte alt
+      // Tips: innerHTML += i stedet for innerHTML =
+
+      // STEG 4 (bonus):
+      // Legg til en tredje parameter: farge
+      // lagKort(tittel, tekst, farge)
+      // Bruk fargen som bakgrunnsfarge på kortets overskrift
+
+
+
+      function lagKort(tittel, tekst, farge) {
+        document.getElementById("output").innerHTML += `
+        <div class="kort">
+          <h2 style="background-color: ${farge}" >${tittel}</h2>
+          <p>${tekst}</p>
+        </div>`; 
+      }
+        // "=" is the assignment operator
+        // "+=" is the addition assignment operator. It keeps the previous HTML and adds the new card to the end
+
+      lagKort("HTML", "HTML is the standard markup language for web pages.", "blue");
+      lagKort("CSS", "CSS is the language we use to style a web page.", "red");
+      lagKort("JavaScript", "JavaScript is the programming language of the web.", "green");
+    </script>
+  </body>
+</html>

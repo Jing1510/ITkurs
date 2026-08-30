@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kalkulator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 32px;
+        background: #f0f4f8;
+        text-align: center;
+      }
+      input {
+        font-size: 22px;
+        padding: 8px;
+        width: 80px;
+        text-align: center;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+      }
+      button {
+        font-size: 18px;
+        padding: 10px 24px;
+        margin: 6px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background: #005f99;
+        color: white;
+      }
+      #svar {
+        font-size: 32px;
+        font-weight: bold;
+        color: #005f99;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kalkulator</h1>
+
+    <!-- OPPGAVE 2 av 3: Aritmetiske operatorer -->
+
+    <!-- To inputfelt for tallene vises allerede -->
+    <input id="tall1" type="number" placeholder="0" />
+    <span style="font-size: 24px; margin: 0 8px">og</span>
+    <input id="tall2" type="number" placeholder="0" />
+
+    <br /><br />
+
+    <!-- Lag fire knapper: Pluss, Minus, Gange, Del -->
+    <!-- Hver knapp kaller sin egen funksjon -->
+
+    <button type="button" onclick="leggSammen()">+</button>
+    <button type="button" onclick="trekkFra()">-</button>
+    <button type="button" onclick="gang()">*</button>
+    <button type="button" onclick="del()">/</button>
+
+
+    <p id="svar"></p>
+
+    <script>
+      // Lag fire funksjoner: leggSammen(), trekkFra(), gang(), del()
+      // Hver funksjon skal:
+      // 1. Lese verdiene fra tall1 og tall2 med getElementById
+      // 2. Konvertere til tall med Number()
+      // 3. Gjøre beregningen
+      // 4. Vise svaret i #svar
+
+      // Tips for å lese inputverdi:
+      // let tall1 = Number(document.getElementById("tall1").value);
+       
+      
+      function leggSammen() {
+        let tall1 = Number(document.getElementById("tall1").value);
+        let tall2 = Number(document.getElementById("tall2").value);
+        let resultat = tall1 + tall2;
+        document.getElementById("svar").innerHTML = "Resultatet er " + resultat;
+      }
+
+      function trekkFra() {
+        let tall1 = Number(document.getElementById("tall1").value);
+        let tall2 = Number(document.getElementById("tall2").value);
+        let resultat = tall1 - tall2;
+        document.getElementById("svar").innerHTML = "Resultatet er " + resultat;
+      }
+
+      function gang() {
+        let tall1 = Number(document.getElementById("tall1").value);
+        let tall2 = Number(document.getElementById("tall2").value);
+        let resultat = tall1 * tall2;
+        document.getElementById("svar").innerHTML = "Resultatet er " + resultat;
+      }
+
+      function del() {
+        let tall1 = Number(document.getElementById("tall1").value);
+        let tall2 = Number(document.getElementById("tall2").value);
+        if (tall2 != 0) {
+          let resultat = tall1 / tall2;
+          document.getElementById("svar").innerHTML = "Resultatet er " + resultat;
+        } else {
+          document.getElementById("svar").innerHTML = "Det går ikke an å dele på null";
+        }
+      }
+    </script>
+  </body>
+</html>
