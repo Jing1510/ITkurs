@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stemmeteller - MVC</title>
+    <style>
+      body {
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding: 32px;
+        background: #f0f4f8;
+        max-width: 500px;
+      }
+
+      /* Lag CSS som gjør siden presentabel.
+           Du trenger minst:
+           - stil på knappene
+           - stil på #status-meldingen
+           - stil på stemme-visningen */
+      button {
+        font-size:large;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+      }
+
+      button.for {
+        background-color:lightgreen;
+      }
+
+      button.mot {
+        background-color: rgb(241, 85, 85);
+      }
+
+      button.nullstill {
+        background-color: rgb(155, 168, 186);
+      }
+
+      #status-meldingen {
+        background-color: rgb(219, 230, 173);
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px; 
+      }
+
+      .stemme-visningen {
+        background-color: rgb(158, 201, 239);
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;       
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Stemmeteller</h1>
+    <p>En enkel app der du kan stemme for eller mot et forslag.</p>
+
+    <!-- Legg til to knapper: "For" og "Mot" -->
+    <!-- Og en "Nullstill"-knapp -->
+    <button type="button" class="for" onclick="stemmFor()">For</button>
+    <button type="button" class="mot" onclick="stemmMot()">Mot</button>
+    <button type="button" class="nullstill" onclick="nullstill()">Nullstill</button>
+
+    <!-- Lag et element som viser: "For: X | Mot: Y" -->
+    <!-- Lag et element som viser en statusmelding, f.eks. "Det er flertall for!" -->
+     <p class="stemme-visningen">For: X | Mot: Y</p>
+     <p id="status-meldingen">Det er flertall for!</p>
+
+    <script>
+      // OPPGAVE: Bygg stemmetelleren i MVC-stil
+
+      // ---- MODEL ----
+      // Lag to variabler: stemmerFor og stemmerMot
+      // Begge starter på 0
+      let stemmerFor = 0;
+      let stemmerMot = 0;
+
+      // ---- VIEW ----
+      // Lag en funksjon updateView() som:
+      // 1. Oppdaterer visningen med antall stemmer for og mot
+      // 2. Viser en statusmelding:
+      //    - "Det er flertall for!" hvis stemmerFor > stemmerMot
+      //    - "Det er flertall mot!" hvis stemmerMot > stemmerFor
+      //    - "Det er uavgjort!" hvis de er like
+      // updateView() skal ALDRI endre model — bare lese fra den
+      function updateView() {
+        document.querySelector(".stemme-visningen").innerHTML = "For: " + stemmerFor + "| Mot: " + stemmerMot;
+        if (stemmerFor > stemmerMot) {
+            document.getElementById("status-meldingen").innerText = "Det er flertall for!";
+        } else if (stemmerMot > stemmerFor) {
+            document.getElementById("status-meldingen").innerText = "Det er flertall mot!";
+        } else {
+            document.getElementById("status-meldingen").innerText = "Det er uavgjort!";
+        }
+      }
+
+      // ---- CONTROLLER ----
+      // Lag tre funksjoner: stemmFor(), stemmMot(), nullstill()
+      // Hver funksjon skal:
+      // 1. Oppdatere riktig modellvariabel
+      // 2. Kalle updateView()
+      // Controller-funksjoner skal ALDRI endre HTML direkte
+      function stemmFor() {
+          stemmerFor++;
+          updateView();
+      }
+      function stemmMot() {
+        stemmerMot++;
+        updateView();
+      }
+      function nullstill() {
+        stemmerFor = 0;
+        stemmerMot = 0;
+        updateView();
+      }
+
+      // Kall updateView() én gang nederst slik at siden vises korrekt ved oppstart
+      updateView();
+    </script>
+  </body>
+</html>
