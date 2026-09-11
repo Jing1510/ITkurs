@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rutenett</title>
+    <style>
+      .selected {
+        background-color: yellow;
+      }
+
+      #app {
+        display: grid;
+        grid-template-columns: repeat(8, 100px);
+        grid-template-rows: repeat(8, 100px);
+      }
+
+      #app > div {
+        border: 1px solid lightblue;
+      }
+
+       #position {
+        color: rgb(8, 159, 209);
+        font-size: 30px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin: 30px 0;
+        text-align: center;
+        width: 800px;
+      }     
+
+      .dpad {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin: 20px 150px;
+        width: 500px;
+      }
+
+      .dpad-middle {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .dpad button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        background-color: #eee;
+        border: 2px solid #999;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .dpad button:hover {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <p id="position"></p>
+
+    <div class="dpad">
+      <button onclick="moveUp()" class="up">⬆️</button>
+      <div class="dpad-middle">
+        <button onclick="moveLeft()" class="left">⬅️</button>
+        <button onclick="moveDown()" class="down">⬇️</button>
+        <button onclick="moveRight()" class="right">➡️</button>
+      </div>
+    </div>
+
+    <script>
+      // Model
+      const size = 64; //antal ruter
+      let yellowSquareIndex = 0;
+
+      const highlightSquare = `<div class="selected"></div>`;
+      const pattern = `<div></div>`;
+      const mainDiv = document.getElementById("app");
+
+      // Tegner brettet på nytt basert på squareIndex,
+      // Akkurat nå er funksjonen hardkodet, hvordan kan vi bruke modellen istedet for å tegne brettet?
+      // Forstå hvordan funksjonen funker før du skriver kode
+
+      //Før du skriver kode, les gjennom koden og forstå hva den gjør
+
+      // Brettet er 8x8 = 64 ruter.
+      // 0 er øverst til venstre. 63 er nederst til høyre.
+      // Hver rad er 8 ruter bred.
+
+      // 1. Lag en variabel yellowSquareIndex som holder posisjonen til den gule ruten.
+
+      // 2. showBoard() er akkurat nå hardkodet til å tegne den gule ruten samme sted.
+      //    Endre showBoard() slik at den tegner den gule ruten ut fra yellowSquareIndex.
+
+      // View
+      function showBoard() {
+        mainDiv.innerHTML = ``;
+        drawPattern(yellowSquareIndex);
+        mainDiv.innerHTML += highlightSquare;
+        drawPattern(size - yellowSquareIndex - 1);
+      }
+
+      // Tegner et gitt antall tomme ruter
+      function drawPattern(amount) {
+        mainDiv.innerHTML += pattern.repeat(amount);
+      }
+
+      // Lag disse funksjonene og koble dem til knappene:
+      // 3. moveRight()  – flytter den gule ruten én rute til høyre.
+      // 4. moveLeft()   – flytter den gule ruten én rute til venstre.
+      // 5. moveDown()   – flytter den gule ruten én rad ned.
+      // 6. moveUp()     – flytter den gule ruten én rad opp.
+
+       // Controller
+      function moveRight() {
+        if (yellowSquareIndex % 8 == 7) {
+          yellowSquareIndex = yellowSquareIndex - 7;
+        } else {
+          yellowSquareIndex++;
+        }       
+        showBoard();
+        showPosition();    
+      }
+
+      function moveLeft() {
+        if (yellowSquareIndex % 8 == 0) {
+          yellowSquareIndex = yellowSquareIndex + 7;
+        } else {
+          yellowSquareIndex--;
+        }
+        showBoard();
+        showPosition();
+      }
+
+      function moveDown() {
+        if (yellowSquareIndex >= size - 8 && yellowSquareIndex <= size - 1) {
+          yellowSquareIndex = yellowSquareIndex - size + 8;
+        } else {
+          yellowSquareIndex = yellowSquareIndex + 8;
+        }     
+        showBoard();
+        showPosition();
+      }
+      function moveUp() {
+        if (yellowSquareIndex >= 0 && yellowSquareIndex <= 7) {
+          yellowSquareIndex = yellowSquareIndex + size - 8;
+        } else {
+          yellowSquareIndex = yellowSquareIndex - 8;
+        }
+        showBoard();
+        showPosition();
+      }
+
+      // BONUS 1: Hindre at ruten går utenfor brettet.
+      // BONUS 2: Vis hvilken rad og kolonne den gule ruten er på.
+      function showPosition() {
+        let row = Math.floor(yellowSquareIndex / 8);
+        let column = yellowSquareIndex % 8;
+
+        document.getElementById("position").innerText = `You are at row ${row}, column ${column}`;
+      }
+      showPosition();
+      showBoard();
+    </script>
+  </body>
+</html>
